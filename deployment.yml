@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yagrua-corps
+  labels:
+    name: yagrua-corps
+    app: yagrua
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: yagrua-corps
+  template:
+    metadata:
+      labels:
+        name: yagrua-corps
+        app: yagrua
+    spec:
+      containers:
+        - env:
+            - name: DB_HOST
+              value: yagrua-mysql
+            - name: DB_NAME
+              value: ya-grua
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: yagrua-mysql-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: yagrua-mysql-secret
+                  key: password
+          image: de.icr.io/yagrua-dev/yagrua-corps
+          imagePullPolicy: IfNotPresent
+          name: yagrua-corps
+          ports:
+            - containerPort: 3001
+      restartPolicy: Always
