@@ -14,16 +14,16 @@ if (!process.env.ENVIRONMENT) {
 
 //export default new DataSource({
 const options = {
-  database: process.env.DATABASE_NAME,
+  database: process.env.DB_NAME,
   entities: [Parking, User, Towtruck],
-  host: process.env.DATABASE_HOST,
+  host: process.env.DB_HOST,
   migrations: ['migrations/*.ts'],
-  password: process.env.DATABASE_PASS,
-  port: Number(process.env.DATABASE_PORT),
+  password: process.env.DB_PASSWORD,
+  port: Number(process.env.DB_PORT),
   // seeds: [InitSeeder], TODO
   synchronize: false,
   type: 'mysql',
-  username: process.env.DATABASE_USER,
+  username: process.env.DB_USER,
 };
 
 // export const source = new DataSource(options as DataSourceOptions & SeederOptions);
