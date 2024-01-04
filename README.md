@@ -1,2 +1,1 @@
-# yagrua-corps
-YAGRUA - Corporations microservice 
+# Corps and tow-trucks micro-service
