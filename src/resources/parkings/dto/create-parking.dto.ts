@@ -29,12 +29,11 @@ export class CreateParkingDto {
   email?: string;
 
   @ApiProperty({ description: 'Parking latitude position' })
-  @IsNumber()
-  @IsNotEmpty()
+  @IsNumber({ maxDecimalPlaces: 7 })
   latitude: number;
 
   @ApiProperty({ description: 'Parking longitude position' })
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 7 })
   @IsNotEmpty()
   longitude: number;
 

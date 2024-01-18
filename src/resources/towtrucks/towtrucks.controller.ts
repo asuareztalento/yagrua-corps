@@ -1,9 +1,10 @@
-import { Controller, Post, Body, Logger, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Logger, Get, Param, Patch } from '@nestjs/common';
 import { TowtrucksService } from './towtrucks.service';
 import { CreateTowtruckDto } from './dto/create-towtruck.dto';
 import { BasicController } from 'src/utils/basic.controller';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import * as _ from 'lodash';
+import { UpdateTowtruckDto } from './dto/update-towtruck.dto';
 
 @Controller('towtrucks')
 export class TowtrucksController extends BasicController {
@@ -27,5 +28,11 @@ export class TowtrucksController extends BasicController {
     this.logger.debug('[findByCorps] corp ids: ' + corpsId);
     const tenants = _.split(corpsId, ',');
     return this.towtrucksService.findByCorp(tenants);
+  }
+
+  @Patch('update/:id')
+  @ApiOperation({ summary: 'Update one entity data' })
+  update(@Param('id') id: string, @Body() updateCreateDto: UpdateTowtruckDto) {
+    return this.towtrucksService.update(+id, updateCreateDto);
   }
 }
