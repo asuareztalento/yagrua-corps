@@ -3,6 +3,7 @@ import { BasicService } from 'src/utils/basic.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import * as _ from 'lodash';
 
 @Injectable()
 export class UsersService extends BasicService {
@@ -11,7 +12,8 @@ export class UsersService extends BasicService {
     super(repo);
   }
 
-  findByAuth(authId: number): Promise<User> {
-    return this.repo.findOne({ where: { auth: authId } });
+  async findByAuth(authId: number): Promise<User> {
+    const user: User = await this.repo.findOne({ where: { auth: authId } });
+    return _.isNull(user) ? new User() : user;
   }
 }
