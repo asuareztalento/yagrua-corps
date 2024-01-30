@@ -42,6 +42,11 @@ export class CreateUserDto {
   @IsOptional()
   otherTraining?: string;
 
+  @ApiProperty({ description: 'User tenant' })
+  @IsString()
+  @IsNotEmpty()
+  tenant: number;
+
   @ApiProperty({ description: 'User has tow-truck license', required: false })
   @IsBoolean()
   @IsOptional()

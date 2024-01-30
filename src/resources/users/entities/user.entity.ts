@@ -43,6 +43,9 @@ export class User extends BasicEntity {
   @Column({ default: '', nullable: true })
   otherTraining: string;
 
+  @Column()
+  tenant: number;
+
   @Column({ default: false, nullable: true })
   towTruckLicense: boolean;
 }
