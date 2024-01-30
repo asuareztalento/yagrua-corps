@@ -53,6 +53,7 @@ export class UsersController extends BasicController {
     const users: User[] = await this.usersService.findByTenants(tenantsArr);
     return _.map(users, (e) =>
       _.pick(e, [
+        'auth',
         'categoryDriverLicense',
         'endSchedule',
         'initSchedule',
@@ -61,6 +62,7 @@ export class UsersController extends BasicController {
         'occupationalRiskPreventionTraining',
         'onDuty',
         'otherTraining',
+        'tenant',
         'towTruckLicense',
       ]),
     );
