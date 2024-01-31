@@ -63,6 +63,7 @@ export class UsersController extends BasicController {
         'onDuty',
         'otherTraining',
         'tenant',
+        'towtruck',
         'towTruckLicense',
       ]),
     );

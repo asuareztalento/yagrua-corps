@@ -1,4 +1,5 @@
 import { Parking } from 'src/resources/parkings/entities/parking.entity';
+import { User } from 'src/resources/users/entities/user.entity';
 import { BasicEntity } from 'src/utils/basic.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
@@ -9,6 +10,9 @@ export class Towtruck extends BasicEntity {
 
   @Column({ default: '', nullable: true })
   color: string;
+
+  @ManyToOne(() => User, (user) => user.towtruck)
+  driver: User;
 
   @Column({ default: '' })
   enrollmentYear: string;

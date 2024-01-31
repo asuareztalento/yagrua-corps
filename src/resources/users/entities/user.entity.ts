@@ -1,5 +1,6 @@
+import { Towtruck } from 'src/resources/towtrucks/entities/towtruck.entity';
 import { BasicEntity } from 'src/utils/basic.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 export enum OnDutyStatuses {
   // user is ready to attend a new service
@@ -45,6 +46,12 @@ export class User extends BasicEntity {
 
   @Column()
   tenant: number;
+
+  @OneToMany(() => Towtruck, (towtruck) => towtruck.driver, {
+    eager: true,
+    cascade: true,
+  })
+  towtruck: Towtruck;
 
   @Column({ default: false, nullable: true })
   towTruckLicense: boolean;
